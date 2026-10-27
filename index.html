@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Кристина UGC</title>
+<meta name="description" content="Кристина, UGC-креатор. Короткие ролики для брендов одежды, макияжа и уходовой косметики: распаковки, разговорные видео, ИИ-ролики, лайфхаки.">
+<style>
+  /* Чередование шоколадных и бежевых листов, как страницы портфолио. Контрастные заглавные с засечками, рукописный акцент. */
+  :root {
+    --choc: #4B3A30;      /* шоколадные блоки */
+    --choc-deep: #3E2F27; /* рамки, шапка */
+    --sand: #DDD0C3;      /* бежевые блоки */
+    --sand-soft: #E8DED3; /* светлые подложки */
+    --on-choc: #EFE5DA;   /* текст на шоколаде */
+    --on-choc-soft: #C6B5A5;
+    --on-sand: #3E2F27;   /* текст на бежевом */
+    --on-sand-soft: #6F5D51;
+    --rule: rgba(62, 47, 39, .28);
+    --rule-choc: rgba(239, 229, 218, .3);
+    --max: 1080px;
+    --serif: "Didot", "Bodoni 72", "Bodoni MT", "Playfair Display", "Times New Roman", Georgia, serif;
+    --script: "Snell Roundhand", "Segoe Script", "Apple Chancery", "Brush Script MT", cursive;
+    --sans: "Helvetica Neue", Helvetica, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --choc: #2B211C; --choc-deep: #1F1814; --sand: #3B2F28; --sand-soft: #44372F;
+      --on-choc: #EFE5DA; --on-choc-soft: #BCA997; --on-sand: #EFE5DA; --on-sand-soft: #C4B2A2;
+      --rule: rgba(239, 229, 218, .25); --rule-choc: rgba(239, 229, 218, .22);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --choc: #2B211C; --choc-deep: #1F1814; --sand: #3B2F28; --sand-soft: #44372F;
+    --on-choc: #EFE5DA; --on-choc-soft: #BCA997; --on-sand: #EFE5DA; --on-sand-soft: #C4B2A2;
+    --rule: rgba(239, 229, 218, .25); --rule-choc: rgba(239, 229, 218, .22);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 60px; }
+  body { background: var(--choc); color: var(--on-choc); font-family: var(--sans); font-size: 16px; font-weight: 300; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  img, video { max-width: 100%; display: block; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  .choc { background: var(--choc); color: var(--on-choc); }
+  .sand { background: var(--sand); color: var(--on-sand); }
+  .band { padding-block: 84px; position: relative; overflow: hidden; }
+
+  /* Типографика */
+  .display { font-family: var(--serif); font-weight: 400; text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.02; text-wrap: balance; }
+  .h2 { font-size: clamp(34px, 5.4vw, 56px); }
+  .script { font-family: var(--script); font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 1.15em; line-height: 1; }
+  .caps { text-transform: uppercase; letter-spacing: 0.2em; font-size: 11px; font-weight: 400; }
+  .center { text-align: center; }
+  .muted-choc { color: var(--on-choc-soft); }
+  .muted-sand { color: var(--on-sand-soft); }
+  .spark { position: absolute; width: 34px; height: 34px; fill: currentColor; opacity: .7; pointer-events: none; }
+
+  /* Шапка */
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 11; background: var(--choc-deep); }
+  header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--choc-deep); color: var(--on-choc); border-bottom: 1px solid var(--rule-choc); }
+  .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 54px; }
+  .logo { font-family: var(--serif); text-decoration: none; text-transform: uppercase; letter-spacing: 0.18em; font-size: 15px; white-space: nowrap; }
+  .menu { display: flex; gap: 22px; list-style: none; overflow-x: auto; scrollbar-width: none; }
+  .menu::-webkit-scrollbar { display: none; }
+  .menu a { text-decoration: none; text-transform: uppercase; letter-spacing: 0.16em; font-size: 11px; color: var(--on-choc-soft); white-space: nowrap; }
+  .menu a:hover, .menu a:focus-visible { color: var(--on-choc); }
+  @media (max-width: 520px) { .logo { display: none; } .nav { justify-content: center; } }
+
+  /* Кнопки */
+  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 30px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.18em; font-size: 12px; font-weight: 400; transition: background .2s ease, color .2s ease; }
+  .btn-choc { background: var(--choc); color: var(--on-choc); border: 1px solid var(--choc); }
+  .btn-choc:hover { background: transparent; color: var(--on-sand); }
+  .btn-sand { background: var(--sand); color: var(--on-sand); border: 1px solid var(--sand); }
+  .btn-sand:hover { background: transparent; color: var(--on-choc); }
+  .btn:focus-visible, .social a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+  /* Иконки соцсетей */
+  .social { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; list-style: none; }
+  .social a { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--choc); color: var(--on-choc); transition: transform .2s ease; }
+  .social a:hover { transform: translateY(-2px); }
+  .social svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ===== Обложка ===== */
+  .cover { display: grid; grid-template-columns: 1fr; }
+  .cover-left { background: var(--choc); padding: 40px max(20px, env(safe-area-inset-left, 0px)) 40px max(20px, env(safe-area-inset-right, 0px)); display: flex; justify-content: center; }
+  .frame { position: relative; padding: 34px; width: min(420px, 100%); }
+  .frame img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center; }
+  .frame .v { position: absolute; font-family: var(--serif); text-transform: uppercase; letter-spacing: 0.2em; font-size: 12px; color: var(--on-choc); white-space: nowrap; }
+  .frame .v.t { top: 8px; left: 50%; transform: translateX(-50%); }
+  .frame .v.b { bottom: 8px; left: 50%; transform: translateX(-50%); }
+  .frame .v.l { left: 8px; top: 50%; transform: translate(-50%, -50%) rotate(-90deg); transform-origin: center; margin-left: 9px; }
+  .frame .v.r { right: 8px; top: 50%; transform: translate(50%, -50%) rotate(90deg); transform-origin: center; margin-right: 9px; }
+  .cover-right { background: var(--sand); color: var(--on-sand); display: grid; place-items: center; text-align: center; padding: 56px max(20px, env(safe-area-inset-right, 0px)) 56px max(20px, env(safe-area-inset-left, 0px)); }
+  .cover-right .inner { display: grid; gap: 18px; justify-items: center; max-width: 420px; }
+  .cover h1 { font-size: clamp(52px, 8.5vw, 92px); }
+  .cover .role { font-family: var(--script); font-size: 34px; line-height: 1; margin-top: -6px; }
+  .cover hr { width: 100%; max-width: 300px; border: 0; border-top: 1px solid var(--rule); }
+  .cover p { color: var(--on-sand-soft); font-size: 15px; }
+  @media (min-width: 860px) {
+    .cover { grid-template-columns: 1fr 1fr; min-height: 600px; }
+    .cover-left { align-items: center; padding-block: 56px; }
+  }
+
+  /* Лента ниш */
+  .strip { background: var(--choc-deep); color: var(--on-choc-soft); text-align: center; padding-block: 14px; }
+  .strip .caps { letter-spacing: 0.32em; }
+
+  /* ===== О себе ===== */
+  .about { display: grid; gap: 48px; align-items: center; }
+  .about .h2 { margin-bottom: 24px; }
+  .about p + p { margin-top: 14px; }
+  .about .sign { font-family: var(--script); font-size: 28px; margin-top: 22px; line-height: 1.2; }
+  .portrait { position: relative; justify-self: center; width: min(320px, 82vw); }
+  .portrait .arch { width: 100%; aspect-ratio: 3 / 4; border-radius: 999px 999px 0 0; overflow: hidden; }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; }
+  .badge { position: absolute; width: 128px; height: 128px; left: -46px; top: -30px; color: var(--on-sand); }
+  .badge text { font-family: var(--serif); font-size: 13px; letter-spacing: 3.2px; fill: currentColor; text-transform: uppercase; }
+  .facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 24px; list-style: none; margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--rule); }
+  .facts li { display: grid; gap: 2px; }
+  .facts .caps { color: var(--on-sand-soft); font-size: 10px; }
+  .facts b { font-family: var(--serif); font-weight: 400; font-size: 21px; line-height: 1.2; }
+  @media (min-width: 860px) {
+    .about { grid-template-columns: 1.15fr 0.85fr; gap: 72px; }
+    .facts { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+
+  /* ===== Ролики ===== */
+  .works-head { display: grid; justify-items: center; gap: 4px; margin-bottom: 52px; text-align: center; }
+  .works-head .script { font-size: 40px; color: var(--on-choc-soft); }
+  .phones { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 16px; max-width: 900px; margin: 0 auto; }
+  @media (min-width: 760px) { .phones { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px 40px; } }
+  .phone { display: grid; gap: 12px; justify-items: center; text-align: center; }
+  .screen { width: 100%; max-width: 230px; aspect-ratio: 9 / 18; border: 6px solid #15100D; border-radius: 28px; overflow: hidden; background: #15100D; box-shadow: 0 20px 40px -24px rgba(0, 0, 0, .7); position: relative; }
+  .screen::before { content: ""; position: absolute; top: 6px; left: 50%; width: 30%; height: 13px; transform: translateX(-50%); border-radius: 10px; background: #15100D; z-index: 2; pointer-events: none; }
+  .screen video { width: 100%; height: 100%; object-fit: cover; }
+  .phone .name { font-family: var(--serif); font-size: 16px; line-height: 1.3; text-transform: uppercase; letter-spacing: 0.06em; }
+  .phone .caps { color: var(--on-choc-soft); font-size: 10px; }
+
+  /* ===== Что я снимаю ===== */
+  .services { display: grid; gap: 44px; align-items: start; }
+  .services .h2 { margin-bottom: 10px; }
+  .services .lead { color: var(--on-sand-soft); max-width: 340px; }
+  .services .side .script { font-size: 34px; display: block; margin-top: 18px; }
+  .checks { list-style: none; display: grid; gap: 22px; }
+  .checks li { display: grid; grid-template-columns: 28px 1fr; gap: 14px; align-items: start; padding-bottom: 22px; border-bottom: 1px solid var(--rule); }
+  .checks li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .checks svg { width: 24px; height: 24px; margin-top: 3px; fill: none; stroke: currentColor; stroke-width: 1.4; }
+  .checks b { display: block; font-family: var(--serif); font-weight: 400; text-transform: uppercase; letter-spacing: 0.08em; font-size: 19px; margin-bottom: 2px; }
+  .checks span { color: var(--on-sand-soft); font-size: 15px; }
+  @media (min-width: 860px) { .services { grid-template-columns: 0.8fr 1.2fr; gap: 80px; } }
+
+  /* ===== Как я работаю ===== */
+  .steps { list-style: none; counter-reset: s; display: grid; gap: 34px 28px; grid-template-columns: 1fr; max-width: 960px; margin: 52px auto 0; }
+  @media (min-width: 640px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 960px) { .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .steps li { counter-increment: s; display: grid; justify-items: center; text-align: center; gap: 10px; }
+  .steps li::before { content: counter(s); width: 54px; height: 54px; border-radius: 50%; border: 1px solid var(--rule-choc); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 24px; }
+  .steps b { font-family: var(--serif); font-weight: 400; text-transform: uppercase; letter-spacing: 0.08em; font-size: 17px; }
+  .steps span { color: var(--on-choc-soft); font-size: 15px; max-width: 280px; }
+
+  /* ===== Контакты ===== */
+  .contact { display: grid; gap: 44px; align-items: center; justify-items: center; text-align: center; }
+  .contact .round { width: min(280px, 72vw); aspect-ratio: 1; border-radius: 50%; overflow: hidden; outline: 1px solid var(--rule); outline-offset: 10px; }
+  .contact .round img { width: 100%; height: 100%; object-fit: cover; object-position: center 28%; }
+  .contact .h2 { margin-bottom: 6px; }
+  .contact .script { font-size: 38px; display: block; margin-bottom: 28px; }
+  .contact .social { justify-content: center; margin-bottom: 22px; }
+  .handles { display: grid; gap: 4px; margin-bottom: 28px; font-size: 15px; }
+  .handles span { color: var(--on-choc-soft); }
+  .choc .social a { background: var(--sand); color: var(--on-sand); }
+  .contact .round { outline-color: var(--rule-choc); }
+  @media (min-width: 860px) { .contact { grid-template-columns: 0.8fr 1.2fr; } }
+
+  footer { background: var(--choc-deep); color: var(--on-choc-soft); text-align: center; padding-block: 22px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="spark" viewBox="0 0 40 40"><path d="M20 0c1.2 10.5 4.6 14.6 20 20-15.4 5.4-18.8 9.5-20 20-1.2-10.5-4.6-14.6-20-20C15.4 14.6 18.8 10.5 20 0z"/></symbol>
+</svg>
+
+<header>
+  <div class="wrap nav">
+    <a href="#top" class="logo">Кристина</a>
+    <ul class="menu">
+      <li><a href="#about">О себе</a></li>
+      <li><a href="#works">Ролики</a></li>
+      <li><a href="#services">Услуги</a></li>
+      <li><a href="#contacts">Контакты</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================= ОБЛОЖКА ================= -->
+  <section id="top" class="cover">
+    <div class="cover-left">
+      <div class="frame">
+        <span class="v t">UGC Portfolio</span>
+        <span class="v b">UGC Portfolio</span>
+        <span class="v l">UGC Portfolio</span>
+        <span class="v r">UGC Portfolio</span>
+        <!-- Ваше фото: замените файл photo-hero.jpg -->
+        <img src="photo-hero.jpg" alt="Кристина">
+      </div>
+    </div>
+    <div class="cover-right">
+      <div class="inner">
+        <span class="caps">UGC Portfolio</span>
+        <h1 class="display">Кристина</h1>
+        <span class="role">ugc-креатор</span>
+        <hr>
+        <p>Короткие вертикальные ролики для брендов одежды, макияжа и ухода. Показываю вещь в деле: как сидит, как ложится, как выглядит к вечеру.</p>
+        <ul class="social">
+          <li><a href="ССЫЛКА_TIKTOK" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M14 3v11.6a3.6 3.6 0 1 1-3.6-3.6"/><path d="M14 3c.5 2.7 2.3 4.4 5 4.6"/></svg></a></li>
+          <li><a href="ССЫЛКА_VK" target="_blank" rel="noopener" aria-label="ВКонтакте"><svg viewBox="0 0 24 24"><path d="M3.5 7.5h2.6c.4 3 1.8 5 3.1 5.4V7.5h2.4v3.3c1.3-.2 2.6-1.7 3.1-3.3h2.4c-.4 2.1-1.9 3.6-3 4.3 1.2.5 3 1.9 3.7 4.4h-2.6c-.6-1.6-1.9-2.9-3.6-3.1v3.1h-.6c-4.6 0-7.4-3.2-7.5-8.7z"/></svg></a></li>
+          <li><a href="https://www.instagram.com/kris_seleznevaa/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></a></li>
+          <li><a href="ССЫЛКА_THREADS" target="_blank" rel="noopener" aria-label="Threads"><svg viewBox="0 0 24 24"><path d="M16.6 10.4C16 7.6 14.2 6.3 12 6.3c-3 0-4.9 2.2-4.9 5.7s1.9 5.7 4.9 5.7c2.6 0 4.4-1.4 4.4-3.5 0-2.4-2.6-3.1-4.8-2.6-1.4.3-2.1 1.1-1.9 2 .2 1 1.3 1.3 2.4 1.1 1.8-.3 2.5-1.9 2.5-4.3"/></svg></a></li>
+          <li><a href="ССЫЛКА_PINTEREST" target="_blank" rel="noopener" aria-label="Pinterest"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M11 20.5l1.6-7.2"/><path d="M10.3 13.6c.4.9 1.2 1.4 2.2 1.4 1.9 0 3.2-1.7 3.2-3.9 0-2.2-1.7-3.7-3.9-3.7-2.4 0-4 1.7-4 3.8 0 .9.3 1.6.9 2"/></svg></a></li>
+          <li><a href="ССЫЛКА_VIBES" target="_blank" rel="noopener" aria-label="Vibes"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="4"/><path d="M10 9v6l5-3z"/></svg></a></li>
+        </ul>
+        <a class="caps" href="https://www.instagram.com/kris_seleznevaa/" target="_blank" rel="noopener" style="text-decoration:none">@kris_seleznevaa</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="strip"><span class="caps">Одежда · Макияж · Уход</span></div>
+
+  <!-- ================= О СЕБЕ ================= -->
+  <section id="about" class="band sand">
+    <svg class="spark" style="right: 6%; top: 40px;" aria-hidden="true"><use href="#spark"/></svg>
+    <div class="wrap">
+      <div class="about">
+        <div>
+          <h2 class="display h2">О себе</h2>
+          <p>Привет, я Кристина. Снимаю ролики про одежду, макияж и уход за кожей. На мне видно, как вещь сядет на невысокую девушку с формами, а не на модель с картинки. Так сразу понятно, подойдёт ли вещь.</p>
+          <p>Перед съёмкой я смотрю, какие ролики в нише набирают просмотры, разбираю, почему они сработали, и пишу сценарий под ваш товар в моём стиле.</p>
+          <p class="sign">Давайте снимем ваш ролик</p>
+          <ul class="facts">
+            <li><span class="caps">Рост</span><b>160 см</b></li>
+            <li><span class="caps">Размер</span><b>48</b></li>
+            <li><span class="caps">Фигура</span><b>песочные часы</b></li>
+            <li><span class="caps">Камера</span><b>iPhone 14 Pro Max</b></li>
+          </ul>
+        </div>
+        <div class="portrait">
+          <svg class="badge" viewBox="0 0 128 128" aria-hidden="true">
+            <defs><path id="ring" d="M64,64 m-48,0 a48,48 0 1,1 96,0 a48,48 0 1,1 -96,0"/></defs>
+            <text><textPath href="#ring">О себе · UGC · о себе · UGC ·</textPath></text>
+            <use href="#spark" x="52" y="52" width="24" height="24"/>
+          </svg>
+          <div class="arch">
+            <!-- Ваше фото: замените файл photo-about.jpg -->
+            <img src="photo-about.jpg" alt="Кристина">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= РОЛИКИ ================= -->
+  <section id="works" class="band choc">
+    <svg class="spark" style="left: 7%; top: 70px;" aria-hidden="true"><use href="#spark"/></svg>
+    <div class="wrap">
+      <div class="works-head">
+        <h2 class="display h2">Примеры роликов</h2>
+        <span class="script">мои работы</span>
+      </div>
+
+      <!-- Ролики лежат в папке video/. Чтобы добавить новый: положите v9.mp4 и обложку v9.jpg и скопируйте блок <div class="phone">. -->
+      <div class="phones">
+        <div class="phone">
+          <div class="screen"><video controls playsinline preload="none" poster="video/v1.jpg"><source src="video/v1.mp4" type="video/mp4"></video></div>
+          <div class="name">Образ на осень</div><div class="caps">Разговорное видео · одежда</div>
+        </div>
+        <div class="phone">
+          <div class="screen"><video controls playsinline preload="none" poster="video/v2.jpg"><source src="video/v2.mp4" type="video/mp4"></video></div>
+          <div class="name">Длинное платье на рост 160 см</div><div class="caps">Тренд · одежда</div>
+        </div>
+        <div class="phone">
+          <div class="screen"><video controls playsinline preload="none" poster="video/v3.jpg"><source src="video/v3.mp4" type="video/mp4"></video></div>
+          <div class="name">Макияж глаз с палеткой</div><div class="caps">Лайфхак · макияж</div>
+        </div>
+        <div class="phone">
+          <div class="screen"><video controls playsinline preload="none" poster="video/v4.jpg"><source src="video/v4.mp4" type="video/mp4"></video></div>
+          <div class="name">Новинки косметики</div><div class="caps">Распаковка · макияж</div>
+        </div>
+        <div class="phone">
+          <div class="screen"><video controls playsinline preload="none" poster="video/v5.jpg?v=2"><source src="video/v5.mp4?v=2" type="video/mp4"></video></div>
+          <div class="name">Причёска на второй день за 15 минут</div><div class="caps">Лайфхак · уход</div>
+        </div>
+        <div class="phone">
+          <div class="screen"><video controls playsinline preload="none" poster="video/v6.jpg"><source src="video/v6.mp4" type="video/mp4"></video></div>
+          <div class="name">Патчи и макияж</div><div class="caps">До и после · уход</div>
+        </div>
+        <div class="phone">
+          <div class="screen"><video controls playsinline preload="none" poster="video/v7.jpg"><source src="video/v7.mp4" type="video/mp4"></video></div>
+          <div class="name">Собираюсь из дома в образ</div><div class="caps">Переход · одежда и макияж</div>
+        </div>
+        <div class="phone">
+          <div class="screen"><video controls playsinline preload="none" poster="video/v8.jpg"><source src="video/v8.mp4" type="video/mp4"></video></div>
+          <div class="name">Смена образов под вентилятором</div><div class="caps">ИИ-ролик · одежда</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ЧТО Я СНИМАЮ ================= -->
+  <section id="services" class="band sand">
+    <div class="wrap">
+      <div class="services">
+        <div class="side">
+          <h2 class="display h2">Что я снимаю</h2>
+          <p class="lead">Четыре формата для маркетплейсов, рекламы и аккаунта бренда.</p>
+          <span class="script">для вашего бренда</span>
+        </div>
+        <ul class="checks">
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5"/><path d="m7.5 12.3 3 3 6-6.3"/></svg><div><b>Распаковка</b><span>Открываю посылку, показываю упаковку, текстуру и товар крупно. Подходит для карточки на маркетплейсе и сторис.</span></div></li>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5"/><path d="m7.5 12.3 3 3 6-6.3"/></svg><div><b>Разговорное видео</b><span>Рассказываю в камеру, зачем этот товар и кому он подойдёт. Подходит для рекламы и аккаунта бренда.</span></div></li>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5"/><path d="m7.5 12.3 3 3 6-6.3"/></svg><div><b>ИИ-ролик</b><span>Ролик с ИИ-сценами или эффектами вокруг товара. Быстро и без долгой съёмки.</span></div></li>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5"/><path d="m7.5 12.3 3 3 6-6.3"/></svg><div><b>Лайфхак</b><span>Показываю полезный приём с вашим товаром: как нанести, сочетать или носить. Такие ролики сохраняют и пересылают.</span></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= КОНТАКТЫ ================= -->
+  <section id="contacts" class="band choc">
+    <div class="wrap">
+      <div class="contact">
+        <div class="round">
+          <!-- Ваше фото: замените файл photo-contact.jpg -->
+          <img src="photo-contact.jpg" alt="Кристина">
+        </div>
+        <div>
+          <h2 class="display h2">Давайте работать</h2>
+          <span class="script">вместе</span>
+          <ul class="social">
+          <li><a href="ССЫЛКА_TIKTOK" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M14 3v11.6a3.6 3.6 0 1 1-3.6-3.6"/><path d="M14 3c.5 2.7 2.3 4.4 5 4.6"/></svg></a></li>
+          <li><a href="ССЫЛКА_VK" target="_blank" rel="noopener" aria-label="ВКонтакте"><svg viewBox="0 0 24 24"><path d="M3.5 7.5h2.6c.4 3 1.8 5 3.1 5.4V7.5h2.4v3.3c1.3-.2 2.6-1.7 3.1-3.3h2.4c-.4 2.1-1.9 3.6-3 4.3 1.2.5 3 1.9 3.7 4.4h-2.6c-.6-1.6-1.9-2.9-3.6-3.1v3.1h-.6c-4.6 0-7.4-3.2-7.5-8.7z"/></svg></a></li>
+          <li><a href="https://www.instagram.com/kris_seleznevaa/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></a></li>
+          <li><a href="ССЫЛКА_THREADS" target="_blank" rel="noopener" aria-label="Threads"><svg viewBox="0 0 24 24"><path d="M16.6 10.4C16 7.6 14.2 6.3 12 6.3c-3 0-4.9 2.2-4.9 5.7s1.9 5.7 4.9 5.7c2.6 0 4.4-1.4 4.4-3.5 0-2.4-2.6-3.1-4.8-2.6-1.4.3-2.1 1.1-1.9 2 .2 1 1.3 1.3 2.4 1.1 1.8-.3 2.5-1.9 2.5-4.3"/></svg></a></li>
+          <li><a href="ССЫЛКА_PINTEREST" target="_blank" rel="noopener" aria-label="Pinterest"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M11 20.5l1.6-7.2"/><path d="M10.3 13.6c.4.9 1.2 1.4 2.2 1.4 1.9 0 3.2-1.7 3.2-3.9 0-2.2-1.7-3.7-3.9-3.7-2.4 0-4 1.7-4 3.8 0 .9.3 1.6.9 2"/></svg></a></li>
+          <li><a href="ССЫЛКА_VIBES" target="_blank" rel="noopener" aria-label="Vibes"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="4"/><path d="M10 9v6l5-3z"/></svg></a></li>
+        </ul>
+          <div class="handles">
+            <div><a href="https://www.instagram.com/kris_seleznevaa/" target="_blank" rel="noopener">Instagram: @kris_seleznevaa</a></div>
+            <span>Telegram: @ВАШ_НИК</span>
+            <span>ВАШ@EMAIL.RU</span>
+            <span>Канал: <a href="https://t.me/ВАШ_КАНАЛ" target="_blank" rel="noopener">[название канала]</a></span>
+          </div>
+          <a href="https://t.me/ВАШ_НИК" class="btn btn-sand" target="_blank" rel="noopener">Написать в Telegram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer><div class="wrap">© 2026 Кристина · UGC Portfolio</div></footer>
+
+</body>
+</html>
